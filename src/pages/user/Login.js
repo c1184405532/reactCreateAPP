@@ -3,8 +3,8 @@ import { List, InputItem, Toast ,Button} from 'antd-mobile';
 import Axions from 'request/Axios.js'
 import './index.css'
 class Login extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             account:'',
             password:''
@@ -51,6 +51,11 @@ class Login extends React.Component {
                 // this.$router.replace({
                 //     name:'homePage/layout',
                 // })
+                this.props.history.replace({
+                    pathname:'/home/index',
+                })
+               
+                console.log(this.props.history)
             }else if(res.message === '密码错误'){
                 Toast.fail('密码错误，请重新输入',2)
                 
@@ -72,7 +77,7 @@ class Login extends React.Component {
                     react-app 模板 基于react-ant-mobile <br/>
                     <a href="https://mobile.ant.design/" target="_blank" rel="noopener noreferrer">进入官网</a>
                 </div>
-                
+                {console.log('首longin')}
                 <List>
                     <InputItem 
                         className="input_item" 

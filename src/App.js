@@ -8,8 +8,6 @@ import {
   } from "react-router-dom";
 import RouterData from 'router/index.js' 
 import Error404 from 'pages/Error404.js'
-
-console.log('RouterData',RouterData) 
 let token = '';
 function App() {
 	return (
@@ -18,11 +16,16 @@ function App() {
 				<Switch>
 					{
 						//初始化重定向路径
-						token ? <Redirect exact from='/' to='/home/home' /> : <Redirect exact from="/" to='/user/login' />
+						token ? <Redirect exact from='/' to='/home/index'/> : <Redirect exact from="/" to='/user/login' />
 					}
 					{
 						RouterData.map(routeParams => {
-							return <Route exact key={routeParams.name} path={routeParams.path} component={routeParams.components}/> 		
+                            return <Route 
+                            
+                                        key={routeParams.name} 
+                                        path={routeParams.path} 
+                                        component={routeParams.components}
+                                    /> 		
 						})
 
 					}
