@@ -12,8 +12,8 @@ class Index extends React.Component {
     render() {
         return (
             <div >
-                {console.log('首页下的首页')}
-                首页下的首页
+                
+                首页下的搜索
             </div>
         );
     }

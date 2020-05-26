@@ -3,7 +3,6 @@ import {
 	BrowserRouter as Router,
 	Switch,
 	Route,
-	Link,
 	Redirect
   } from "react-router-dom";
 import RouterData from 'router/index.js' 
@@ -21,7 +20,6 @@ function App() {
 					{
 						RouterData.map(routeParams => {
                             return <Route 
-                            
                                         key={routeParams.name} 
                                         path={routeParams.path} 
                                         component={routeParams.components}
