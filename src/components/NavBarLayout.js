@@ -1,6 +1,10 @@
 import React from 'react';
 import { NavBar, Icon } from 'antd-mobile';
 class NavBarLayout extends React.Component {
+    static defaultProps = {
+        leftContent:false,
+        rightContent:false
+    }
     constructor(props) {
         super(props);
     }
@@ -8,17 +12,19 @@ class NavBarLayout extends React.Component {
         
     }
     componentWillUnmount() {
+        
     }
+    leftClick(){
+        this.props.leftCallBack && this.props.leftCallBack()
+    }
+    
     render() {
         return (
             <NavBar
                 mode="dark"
-                leftContent={<Icon type="left" />}
-                rightContent={[
-                    <Icon key="0" type="search" style={{ marginRight: '16px' }} />,
-                    <Icon key="1" type="ellipsis" />,
-                ]}
-            >头部导航</NavBar>
+                leftContent={this.props.leftContent || <Icon type="left" onClick={()=>{this.leftClick()}}/>}
+                rightContent={this.props.rightContent || <Icon type="ellipsis" onClick={this.props.rightCallBack}/>}
+            >{this.props.title}</NavBar>
         );
     }
 }

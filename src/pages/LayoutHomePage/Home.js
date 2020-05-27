@@ -19,6 +19,9 @@ class Home extends React.Component {
         homeRouteData.forEach(route=>{
             route.jumpPath = this.props.match.path + route.path;
         })
+        this.state = {
+            navBarTitle:""
+        }
         //console.log('homeRouteData',homeRouteData)
     }
     componentDidMount() {
@@ -26,17 +29,33 @@ class Home extends React.Component {
     }
     componentWillUnmount() {
     }
+    leftCallBack(){
+        console.log('左侧点击',this.state.navBarTitle)
+    }
+    rightCallBack(){
+        console.log('右侧点击',this.state.navBarTitle)
+    }
+    tabCallback(title){
+        this.setState({
+            navBarTitle:title
+        })
+    }
     render() {
         return (
             <div className="home_page_layout_box">
-                <NavBarLayout/>
+                <NavBarLayout 
+                    leftContent={true}
+                    title={this.state.navBarTitle}
+                    leftCallBack={()=>{this.leftCallBack()}}
+                    rightCallBack={()=>{this.rightCallBack()}}
+                />
                 <div className="home_content_box">
                     {homeRouteData.map(roureParams=>(
                         <Route key={roureParams.name} path={`${this.props.match.path+roureParams.path}`} component={roureParams.components} />
                     ))}
                 </div>
                 <div className="tab_bar_box">
-                    <TabBarLayout tabData={homeRouteData}/>
+                    <TabBarLayout tabData={homeRouteData} tabCallback={(title)=>{this.tabCallback(title)}}/>
                 </div>     
             </div>
         );
