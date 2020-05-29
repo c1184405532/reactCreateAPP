@@ -18,7 +18,7 @@ class TabBarLayout extends React.Component {
         this.setState({
             checkItem:routeData.jumpPath
         })
-        this.props.tabCallback(routeData.meta.title)
+        this.props.tabCallback(routeData.meta)
         this.props.history.push({
             pathname:routeData.jumpPath
         })

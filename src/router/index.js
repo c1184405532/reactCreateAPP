@@ -30,8 +30,10 @@ const router = [
             {
                 meta:{
                     title:"搜索",
+                   
                     defaultIcon:require('assets/default_search.png'),
                     activeIcon:require('assets/active_search.png'),
+                    
                 },
                 path:'/search',
                 name:'/search',
@@ -40,8 +42,10 @@ const router = [
             {
                 meta:{
                     title:"我的",
+                    
                     defaultIcon:require('assets/default_my.png'),
                     activeIcon:require('assets/active_my.png'),
+                    
                 },
                 path:'/my',
                 name:'/my',

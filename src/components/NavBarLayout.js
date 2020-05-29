@@ -3,7 +3,8 @@ import { NavBar, Icon } from 'antd-mobile';
 class NavBarLayout extends React.Component {
     static defaultProps = {
         leftContent:false,
-        rightContent:false
+        rightContent:false,
+        isShowNavBar:true,
     }
     constructor(props) {
         super(props);
@@ -20,11 +21,13 @@ class NavBarLayout extends React.Component {
     
     render() {
         return (
-            <NavBar
+            this.props.isShowNavBar?<NavBar
                 mode="dark"
                 leftContent={this.props.leftContent || <Icon type="left" onClick={()=>{this.leftClick()}}/>}
                 rightContent={this.props.rightContent || <Icon type="ellipsis" onClick={this.props.rightCallBack}/>}
-            >{this.props.title}</NavBar>
+            >{this.props.title}</NavBar>:null
+            
+            
         );
     }
 }
