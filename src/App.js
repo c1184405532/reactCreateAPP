@@ -3,7 +3,7 @@ import {
 	BrowserRouter as Router,
 	Switch,
 	Route,
-	Redirect
+	Redirect,
   } from "react-router-dom";
 import RouterData from 'router/index.js' 
 import Error404 from 'pages/Error404.js'

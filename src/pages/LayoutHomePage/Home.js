@@ -35,6 +35,9 @@ class Home extends React.Component {
         console.log('左侧点击',this.state.navBarTitle)
     }
     rightCallBack = ()=>{
+        window.$emit('rightLayoutMenuClick',{
+            title:this.state.navBarTitle
+        })
         console.log('右侧点击',this.state.navBarTitle)
     }
     tabCallback = (routeMeta)=>{

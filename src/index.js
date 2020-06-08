@@ -4,6 +4,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import 'globaleConfig/routerConfig.js'
 import 'globaleConfig/userMessage.js'
+import 'globaleConfig/util.js'
 ReactDOM.render(
   <React.StrictMode>
     <App />
