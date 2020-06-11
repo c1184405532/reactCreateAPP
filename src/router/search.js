@@ -1,11 +1,12 @@
 
+import asyncComponent from 'components/asyncComponent.js'
 
-import SearchList from 'pages/search/List.js'
+const AsyncSearchList= asyncComponent(() => import("pages/search/List.js"));
 const searchRouter = [
     {
         path:'/search/list',
         name:'/search/list',
-        components: SearchList,
+        components: AsyncSearchList,
     },
     
 ]

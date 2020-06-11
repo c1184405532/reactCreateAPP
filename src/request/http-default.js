@@ -10,7 +10,7 @@ const instance = axions.create({
     timeout:2000,
 })
 
-const ClearToast = Toast;
+
 instance.interceptors.request.use(function (config) {
     // 在发送请求之前做些什么
     const token = window.getToken() 
@@ -20,12 +20,7 @@ instance.interceptors.request.use(function (config) {
     }
     //console.log('在发送请求之前做些什么',config)
     if(instance.toastConfig.beforeRequestToastType){
-        // Toast.loading({
-        //     message: config.toastmessage || instance.toastConfig.message,
-        //     forbidClick: true,
-        //     duration:0,
-        //     loadingType: 'spinner'
-        // });
+       
         Toast.loading( config.toastmessage || instance.toastConfig.message,0);
     }
     console.log(config)
@@ -98,7 +93,10 @@ instance.interceptors.response.use(function (response) {
                         // })
                         // window.removeLocalStorage('routerIsBack')
                         
-                    break;
+                        break;
+                    default:
+                        console.log(error.response)
+
                 }
             },1000)
             

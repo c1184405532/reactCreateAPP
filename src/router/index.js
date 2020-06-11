@@ -1,21 +1,31 @@
 
-import Login from 'pages/user/Login.js'
-import Home from 'pages/LayoutHomePage/Home.js'
-import HomeIndex from 'pages/home/IndexPage.js'
-import SearchPage from 'pages/home/SearchPage.js'
+import asyncComponent from 'components/asyncComponent.js'
+
+// import Login from 'pages/user/Login.js'
+// import Home from 'pages/LayoutHomePage/Home.js'
+// import HomeIndex from 'pages/home/IndexPage.js'
+// import SearchPage from 'pages/home/SearchPage.js'
+// import MyPage from 'pages/home/MyPage.js'
 import searchRouter from './search.js'
+const AsyncLogin = asyncComponent(() => import("pages/user/Login.js"));
+const AsyncHome = asyncComponent(() => import("pages/LayoutHomePage/Home.js"));
+const AsyncHomeIndex = asyncComponent(() => import("pages/home/IndexPage.js"));
+const AsyncSearchPage = asyncComponent(() => import("pages/home/SearchPage.js"));
+const AsyncMyPage = asyncComponent(() => import("pages/home/MyPage.js"));
+
+console.log(AsyncLogin)
 const router = [
     {
         path:'/user/login',
         name:'/user/login',
-        components: Login
+        components: AsyncLogin
     } ,
     {
         //meta type === home会默认此配置文件下的children路由为tabbar嵌套的路由
         meta:{type:'home'},
         path:'/home',
         name:'/home',
-        components: Home,
+        components: AsyncHome,
         children:[
             //这里path的路径不用拼写父组件路径 使用时会直接带上
             {
@@ -26,7 +36,7 @@ const router = [
                 },
                 path:'/index',
                 name:'/index',
-                components: HomeIndex,
+                components: AsyncHomeIndex,
             },
             {
                 meta:{
@@ -38,7 +48,7 @@ const router = [
                 },
                 path:'/search',
                 name:'/search',
-                components: SearchPage,
+                components: AsyncSearchPage,
             },
             {
                 meta:{
@@ -50,7 +60,7 @@ const router = [
                 },
                 path:'/my',
                 name:'/my',
-                components: SearchPage,
+                components: AsyncMyPage,
             }
         ],
     },

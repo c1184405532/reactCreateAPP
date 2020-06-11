@@ -1,24 +1,24 @@
 import React from 'react';
 import {withRouter} from "react-router-dom";
-import { TabBar , Icon } from 'antd-mobile';
+import { TabBar  } from 'antd-mobile';
 class TabBarLayout extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            checkItem:this.props.tabData[0].jumpPath,
+            
         }
-        
     }
     componentDidMount() {
-        console.log('props',this.props)
-        this.props.tabCallback(this.props.tabData[0].meta.title)
+      
     }
     gotoPage(routeData){
-        //console.log(this.props)
-        this.setState({
+      
+        //设置当前选中项
+        this.props.tabCallback({
+            ...routeData.meta,
             checkItem:routeData.jumpPath
         })
-        this.props.tabCallback(routeData.meta)
+        
         this.props.history.push({
             pathname:routeData.jumpPath
         })
@@ -37,13 +37,13 @@ class TabBarLayout extends React.Component {
                 barTintColor="white"
             >
                 
-                {this.props.tabData.map(route=>(
+                {this.props.tabData.map((route,index)=>(
                     <TabBar.Item 
                         key={route.name}
                         title={route.meta.title} 
                         icon={this.ImgIcon(route.meta.defaultIcon)}
                         selectedIcon={this.ImgIcon(route.meta.activeIcon)}
-                        selected={this.state.checkItem === route.jumpPath}
+                        selected={this.props.checkItem === route.jumpPath}
                         onPress={()=>{this.gotoPage(route)}}
                     /> 
                 ))}
