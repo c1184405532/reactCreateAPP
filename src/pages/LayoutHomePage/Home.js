@@ -88,7 +88,7 @@ class Home extends React.Component {
                         <Route key={roureParams.name} path={`${this.props.match.path+roureParams.path}`} component={roureParams.components} />
                     ))}
                 </div>
-                <div className="tab_bar_box">
+                <div className="ignore_tab_bar_box">
                     <TabBarLayout tabData={homeRouteData} checkItem={this.state.checkItem} tabCallback={this.tabCallback}/>
                 </div>     
             </div>
