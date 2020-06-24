@@ -46,8 +46,9 @@ class Login extends React.Component {
         }).then((res)=>{
             
             if(res.success){
+                //如果登录成功设置所有页面可以存在点击浏览器回退按钮
+                window.setLocalStorage('isRouterBack',true)
                 window.setToken(res.data.token)
-                window.setLocalStorage('routerIsBack',true)
                 // this.$router.replace({
                 //     name:'homePage/layout',
                 // })

@@ -1,0 +1,78 @@
+
+.App{
+    height: 100vh;
+    width: 100vw;
+}
+.slide-left-leave-active {
+   
+    will-change: transform;
+    transition: all 300ms;
+    position: fixed;
+    
+}
+.slide-right-enter {
+    transform: translate(-100%, 0);
+    transition-timing-function: ease-in;
+    will-change: transform;
+    transition: all 300ms;
+    position: fixed;
+}
+.slide-left-enter {
+    transform: translate(100%, 0);
+    transition-timing-function: ease-in;
+    will-change: transform;
+    transition: all 300ms;
+    position: fixed;
+}
+
+.slide-right-enter {
+    transform: translate(-100%, 0);
+    transition-timing-function: ease-in;
+    will-change: transform;
+    transition: all 300ms;
+    position: fixed;
+}
+.slide-left-enter {
+    transform: translate(100%, 0);
+    transition-timing-function: ease-in;
+    will-change: transform;
+    transition: all 300ms;
+    position: fixed;
+}
+.in .animation-enter-active{
+    /* transform: translate(-100%, 0);
+    transition-timing-function: ease-in;
+    transition: all 3000ms;  */
+    animation: inAnimation 3s;
+    position: fixed;
+}
+
+.out .animation-enter-active{
+    transform: translate(-100%, 0);
+    transition-timing-function: ease-in;
+    transition: all 3000ms; 
+    
+}
+.in .animation-exit-active{
+    
+    /* transform: translate(0%, 0);
+    transition-timing-function: ease-in;
+    transition: all 3000ms;  */
+    
+    /* position: fixed; */
+}
+.out .animation-exit-active{
+    
+    transform: translate(-100%, 0);
+    transition-timing-function: ease-in;
+    transition: all 3000ms; 
+    position: fixed;
+}
+@keyframes inAnimation
+{
+    0%   {transform: translate(100%, 0);}
+    25%  {transform: translate(60%, 0);}
+    50%  {transform: translate(40%, 0);}
+    100% {transform: translate(20%, 0);}
+}
+

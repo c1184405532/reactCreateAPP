@@ -3,8 +3,10 @@ import RouterData from 'router/index.js'
 import './index.css';
 import NavBarLayout from 'components/NavBarLayout.js'
 import TabBarLayout from 'components/TabBarLayout.js'
+import Error404 from 'pages/Error404.js'
 import {
-	Route,
+    Route,
+    Switch
   } from "react-router-dom";
 let homeRouteData = []
 class Home extends React.Component {
@@ -49,7 +51,6 @@ class Home extends React.Component {
                 checkItem:homeRouteData[0].jumpPath
             })
         }
-        
     }
     componentWillUnmount() {
     }
@@ -84,9 +85,19 @@ class Home extends React.Component {
                     rightCallBack={this.rightCallBack}
                 />
                 <div className="home_content_box">
-                    {homeRouteData.map(roureParams=>(
-                        <Route key={roureParams.name} path={`${this.props.match.path+roureParams.path}`} component={roureParams.components} />
-                    ))}
+                    <Switch>		
+                        {homeRouteData.map(roureParams=>(
+                            <Route key={roureParams.name} path={`${this.props.match.path+roureParams.path}`} component={roureParams.components} />
+                        ))}
+                        {
+                            /* 
+                                页面路径没有匹配时进入此页面 必须放在最后 
+                                因为Switch 一旦匹配就会停止下面的路由匹配机制
+                            */
+                            <Route exact  path="*" component={Error404}/> 
+                        }
+				    </Switch>
+                    
                 </div>
                 <div className="ignore_tab_bar_box">
                     <TabBarLayout tabData={homeRouteData} checkItem={this.state.checkItem} tabCallback={this.tabCallback}/>

@@ -12,17 +12,18 @@ const AsyncHome = asyncComponent(() => import("pages/LayoutHomePage/Home.js"));
 const AsyncHomeIndex = asyncComponent(() => import("pages/home/IndexPage.js"));
 const AsyncSearchPage = asyncComponent(() => import("pages/home/SearchPage.js"));
 const AsyncMyPage = asyncComponent(() => import("pages/home/MyPage.js"));
-
-console.log(AsyncLogin)
+//isRouterBack 是否可以不需要登录进入
+//isToken 是否需要token校验
 const router = [
     {
+        meta:{isRouterBack:true},
         path:'/user/login',
         name:'/user/login',
         components: AsyncLogin
     } ,
     {
         //meta type === home会默认此配置文件下的children路由为tabbar嵌套的路由
-        meta:{type:'home'},
+        meta:{type:'home',isToken:true},
         path:'/home',
         name:'/home',
         components: AsyncHome,
