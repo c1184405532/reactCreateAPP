@@ -51,7 +51,9 @@ function AnimationApp(){
                     classNames="animation"
                     onEnter={()=>{console.log('onEnter')}}
                     onEntered={()=>{console.log('onEntered')}}
-                    timeout={3000}
+                    timeout={300}
+                    enter={false}
+                    exit={false}
                 >
                     <div className="App">
                         <Switch >		

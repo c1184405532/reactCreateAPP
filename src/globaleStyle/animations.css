@@ -40,39 +40,77 @@
     position: fixed;
 }
 .in .animation-enter-active{
-    /* transform: translate(-100%, 0);
+    /* transform: translateX(-100%);
     transition-timing-function: ease-in;
     transition: all 3000ms;  */
-    animation: inAnimation 3s;
-    position: fixed;
-}
-
-.out .animation-enter-active{
-    transform: translate(-100%, 0);
-    transition-timing-function: ease-in;
-    transition: all 3000ms; 
-    
-}
-.in .animation-exit-active{
-    
-    /* transform: translate(0%, 0);
-    transition-timing-function: ease-in;
-    transition: all 3000ms;  */
-    
-    /* position: fixed; */
-}
-.out .animation-exit-active{
-    
-    transform: translate(-100%, 0);
-    transition-timing-function: ease-in;
-    transition: all 3000ms; 
-    position: fixed;
+   
+    opacity: 0;
+  
+   
 }
 @keyframes inAnimation
 {
-    0%   {transform: translate(100%, 0);}
-    25%  {transform: translate(60%, 0);}
-    50%  {transform: translate(40%, 0);}
-    100% {transform: translate(20%, 0);}
+    0%   {transform: translateX(100%);}
+    10%  {transform: translateX(90%);}
+    20%  {transform: translateX(80%);}
+    30%  {transform: translateX(70%);}
+    40%  {transform: translateX(60%);}
+    50%  {transform: translateX(50%);}
+    60%  {transform: translateX(40%);}
+    70%  {transform: translateX(30%);}
+    80% {transform: translateX(20%);}
+    90% {transform: translateX(10%);}
+    100% {transform: translateX(0%);}
+    /* 0%   {opacity: 0;}
+    25%  {opacity: 0.5;}
+    50%  {opacity: 0.6;}
+    100% {opacity: 0.8;} */
 }
+@keyframes outAnimation
+{
+    0%   {transform: translateX(-100%);}
+    10%  {transform: translateX(-90%);}
+    20%  {transform: translateX(-80%);}
+    30%  {transform: translateX(-70%);}
+    40%  {transform: translateX(-60%);}
+    50%  {transform: translateX(-50%);}
+    60%  {transform: translateX(-40%);}
+    70%  {transform: translateX(-30%);}
+    80% {transform: translateX(-20%);}
+    90% {transform: translateX(-10%);}
+    100% {transform: translateX(0%);}
+    /* 0%   {opacity: 0;}
+    25%  {opacity: 0.5;}
+    50%  {opacity: 0.6;}
+    100% {opacity: 0.8;} */
+}
+@keyframes mymove
+{
+	from {top:0px;}
+	to {top:200px;}
+}
+
+.in .animation-exit-active{
+    animation: mymove 3s ;
+    
+}
+.in .App{
+    animation: inAnimation .3s ease-in;
+}
+.out .App{
+    animation: outAnimation .3s ease-in;
+}
+.out .animation-enter-active{
+    
+    
+}
+.in .animation-exit-active{
+   
+    
+}
+.out .animation-exit-active{
+    
+    
+}
+
 

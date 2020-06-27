@@ -34,6 +34,7 @@ module.exports = override(
                             plugins: () => [
                                 require('postcss-import'),
                                 require('postcss-url'),
+                               
                                 require('postcss-aspect-ratio-mini'),
                                 require('postcss-write-svg')({utf8: false}),
                                 require('postcss-cssnext'),
@@ -48,12 +49,14 @@ module.exports = override(
                                     mediaQuery: false       // (Boolean) Allow px to be converted in media queries.
                                 }),
                                 //require('postcss-viewport-units')({silence:true}), 用于兼容部分手机不支持vw 需要就安装 当前项目已卸载
-                                require('cssnano')({
-                                    preset: "advanced",
-                                    autoprefixer: false,
-                                    "postcss-zindex": false
-                                }),
-
+                                // require('cssnano')({
+                                //     reduceIdents: { keyframes: false },
+                                //     preset: "advanced",
+                                //     autoprefixer: false,
+                                //     "postcss-zindex": false,
+                                    
+                                // }),
+                               
                             ],
                         },
 
