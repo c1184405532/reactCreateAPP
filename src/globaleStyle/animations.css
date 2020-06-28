@@ -3,51 +3,7 @@
     height: 100vh;
     width: 100vw;
 }
-.slide-left-leave-active {
-   
-    will-change: transform;
-    transition: all 300ms;
-    position: fixed;
-    
-}
-.slide-right-enter {
-    transform: translate(-100%, 0);
-    transition-timing-function: ease-in;
-    will-change: transform;
-    transition: all 300ms;
-    position: fixed;
-}
-.slide-left-enter {
-    transform: translate(100%, 0);
-    transition-timing-function: ease-in;
-    will-change: transform;
-    transition: all 300ms;
-    position: fixed;
-}
 
-.slide-right-enter {
-    transform: translate(-100%, 0);
-    transition-timing-function: ease-in;
-    will-change: transform;
-    transition: all 300ms;
-    position: fixed;
-}
-.slide-left-enter {
-    transform: translate(100%, 0);
-    transition-timing-function: ease-in;
-    will-change: transform;
-    transition: all 300ms;
-    position: fixed;
-}
-.in .animation-enter-active{
-    /* transform: translateX(-100%);
-    transition-timing-function: ease-in;
-    transition: all 3000ms;  */
-   
-    opacity: 0;
-  
-   
-}
 @keyframes inAnimation
 {
     0%   {transform: translateX(100%);}
@@ -59,7 +15,7 @@
     60%  {transform: translateX(40%);}
     70%  {transform: translateX(30%);}
     80% {transform: translateX(20%);}
-    90% {transform: translateX(10%);}
+    90% {transform: translateX(0%);}
     100% {transform: translateX(0%);}
     /* 0%   {opacity: 0;}
     25%  {opacity: 0.5;}
@@ -77,7 +33,7 @@
     60%  {transform: translateX(-40%);}
     70%  {transform: translateX(-30%);}
     80% {transform: translateX(-20%);}
-    90% {transform: translateX(-10%);}
+    90% {transform: translateX(0%);}
     100% {transform: translateX(0%);}
     /* 0%   {opacity: 0;}
     25%  {opacity: 0.5;}
@@ -90,17 +46,17 @@
 	to {top:200px;}
 }
 
-.in .animation-exit-active{
+/* .in .animation-exit-active{
     animation: mymove 3s ;
     
-}
+} */
 .in .App{
     animation: inAnimation .3s ease-in;
 }
 .out .App{
     animation: outAnimation .3s ease-in;
 }
-.out .animation-enter-active{
+/* .out .animation-enter-active{
     
     
 }
@@ -111,6 +67,6 @@
 .out .animation-exit-active{
     
     
-}
+} */
 
 

@@ -49,13 +49,16 @@ module.exports = override(
                                     mediaQuery: false       // (Boolean) Allow px to be converted in media queries.
                                 }),
                                 //require('postcss-viewport-units')({silence:true}), 用于兼容部分手机不支持vw 需要就安装 当前项目已卸载
-                                // require('cssnano')({
-                                //     reduceIdents: { keyframes: false },
-                                //     preset: "advanced",
-                                //     autoprefixer: false,
-                                //     "postcss-zindex": false,
+                                require('cssnano')({
+                                    "cssnano-preset-advanced": {
+                                        zindex: false,
+                                        autoprefixer: false
+                                    },
                                     
-                                // }),
+                                }),
+                                require('postcss-reduce-idents')({
+                                    keyframes: false  
+                                })
                                
                             ],
                         },

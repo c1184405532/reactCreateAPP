@@ -17,7 +17,7 @@ import Error404 from 'pages/Error404.js'
 import AuthRoute from 'components/AuthRoute.js'
 import 'globaleStyle/animations.css'
 function routeGoPage(e){
-    console.log('进入路由',e)    
+    //console.log('进入路由',e)    
 }
 function App() {
     //let location = useLocation();
@@ -29,6 +29,9 @@ function App() {
 	);
 }
 let oldLocation = null;
+let homeRoute = RouterData.filter((element)=>{
+    return element.meta && element.meta.type === 'home'
+})[0]
 function AnimationApp(){
     let location = useLocation();
     let history = useHistory();
@@ -38,10 +41,18 @@ function AnimationApp(){
     } else if(history.action === 'POP' && oldLocation) {
         classNames = 'out'
     }
-
+    if(oldLocation && history.action === 'PUSH'){
+        homeRoute.children.forEach(element => {
+            if(element.jumpPath === location.pathname){
+                classNames = 'none_animation'
+            }
+        });
+        if(oldLocation){}
+    }
+    console.log(homeRoute)
     // 更新旧location
     oldLocation = location;
-    console.log('history',history)
+    console.log('history',location)
     return (
             <TransitionGroup
                 className={classNames}
@@ -49,9 +60,6 @@ function AnimationApp(){
                 <CSSTransition
                     key={location.pathname}
                     classNames="animation"
-                    onEnter={()=>{console.log('onEnter')}}
-                    onEntered={()=>{console.log('onEntered')}}
-                    timeout={300}
                     enter={false}
                     exit={false}
                 >
