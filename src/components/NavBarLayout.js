@@ -23,21 +23,25 @@ class NavBarLayout extends React.Component {
     componentWillUnmount() {
         
     }
-    leftClick(){
+    leftClick = ()=>{
         //console.log('返回',this.props.history)
         this.props.leftCallBack && this.props.leftCallBack()
         this.props.history.go(-1)
     }
-    
+    rightClick = ()=>{
+        //console.log('右侧点击')
+    }
     render() {
         return (
-            this.props.isShowNavBar?<NavBar
+            this.props.isShowNavBar?
+            <NavBar
                 mode="dark"
-                leftContent={this.props.leftContent || <Icon type="left" onClick={()=>{this.leftClick()}}/>}
-                rightContent={this.props.rightContent || <Icon type="ellipsis" onClick={this.props.rightCallBack&&this.props.rightCallBack}/>}
-            >{this.props.title}</NavBar>:null
-            
-            
+                leftContent={this.props.leftContent || <Icon type="left" onClick={this.leftClick}/>}
+                rightContent={this.props.rightContent || <Icon type="ellipsis" onClick={this.props.rightCallBack || this.rightClick}/>}
+            >
+                {this.props.title}
+            </NavBar>
+            :null  
         );
     }
 }

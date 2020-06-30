@@ -10,7 +10,6 @@ import {
     Redirect,
     useLocation,
     useHistory,
-    withRouter
   } from "react-router-dom";
 import RouterData from 'router/index.js' 
 import Error404 from 'pages/Error404.js'
@@ -20,7 +19,6 @@ function routeGoPage(e){
     //console.log('进入路由',e)    
 }
 function App() {
-    //let location = useLocation();
 	return (
 		<Router>
             <AnimationApp/>
@@ -43,16 +41,17 @@ function AnimationApp(){
     }
     if(oldLocation && history.action === 'PUSH'){
         homeRoute.children.forEach(element => {
+            //jumpPath 是在LayoutHomePage/Home中定义的 因为是同一数据源的引用所以那边赋值了这边也能获取到
             if(element.jumpPath === location.pathname){
                 classNames = 'none_animation'
             }
         });
-        if(oldLocation){}
+        
     }
-    console.log(homeRoute)
+    //console.log(homeRoute)
     // 更新旧location
     oldLocation = location;
-    console.log('history',location)
+    //console.log('history',location)
     return (
             <TransitionGroup
                 className={classNames}
@@ -60,6 +59,7 @@ function AnimationApp(){
                 <CSSTransition
                     key={location.pathname}
                     classNames="animation"
+                    timeout={300}
                     enter={false}
                     exit={false}
                 >
@@ -75,24 +75,16 @@ function AnimationApp(){
                                                 component={routeParams.components}
                                             />
                                 })
-
                             }
                             <Route exact path="/">
                                 <Redirect to="/user/login" />
                             </Route>
-                            {
-                                /* 
-                                    页面路径没有匹配时进入此页面 必须放在最后 
-                                    因为Switch 一旦匹配就会停止下面的路由匹配机制
-                                */
-                                <Route exact  path="*" component={Error404}/> 
-                            }
+                            { /* 页面路径没有匹配时进入此页面 必须放在最后 因为Switch 一旦匹配就会停止下面的路由匹配机制*/}
+                            <Route exact  path="*" component={Error404}/> 
                         </Switch>
                     </div>
                 </CSSTransition>
-            </TransitionGroup>
-    	
-		
+            </TransitionGroup>		
 	);
 }
 export default App;

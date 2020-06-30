@@ -1,6 +1,6 @@
 import React from 'react';
 import { List, InputItem, Toast ,Button} from 'antd-mobile';
-import Axions from 'request/Axios.js'
+import Axios from 'request/Axios.js'
 import './index.css'
 class Login extends React.Component {
     constructor(props) {
@@ -32,7 +32,7 @@ class Login extends React.Component {
             Toast.info('请输入密码 123456', 2);
             return 
         }
-        Axions.post('api/login',{
+        Axios.post('api/login',{
             data:{
                 userName:this.state.account,
                 passWord:this.state.password,
@@ -49,6 +49,8 @@ class Login extends React.Component {
                 //如果登录成功设置所有页面可以存在点击浏览器回退按钮
                 window.setLocalStorage('isRouterBack',true)
                 window.setToken(res.data.token)
+                //清除导航菜单数据 默认进入首页
+                window.removeLocalStorage('navMenuBarDataPage')
                 // this.$router.replace({
                 //     name:'homePage/layout',
                 // })
@@ -56,14 +58,14 @@ class Login extends React.Component {
                     pathname:'/home/index',
                 })
                
-                console.log(this.props.history)
+                //console.log(this.props.history)
             }else if(res.message === '密码错误'){
                 Toast.fail('密码错误，请重新输入',2)
                 
             }
             //console.log(res)
         })
-        console.log('登录')
+        //console.log('登录')
     }
     componentDidMount() {
 
@@ -78,7 +80,6 @@ class Login extends React.Component {
                     react-app 模板 基于react-ant-mobile <br/>
                     <a href="https://mobile.ant.design/" target="_blank" rel="noopener noreferrer">进入官网</a>
                 </div>
-                {console.log('首longin')}
                 <List>
                     <InputItem 
                         className="input_item" 
