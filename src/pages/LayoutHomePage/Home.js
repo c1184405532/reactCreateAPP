@@ -87,7 +87,7 @@ class Home extends React.Component {
                 <div className="home_content_box">
                     <Switch>		
                         {homeRouteData.map(roureParams=>(
-                            <Route key={roureParams.name} path={`${this.props.match.path+roureParams.path}`} component={roureParams.components} />
+                            <Route key={roureParams.name} exact={true} path={`${this.props.match.path+roureParams.path}`} component={roureParams.components} />
                         ))}
                         {
                             /* 

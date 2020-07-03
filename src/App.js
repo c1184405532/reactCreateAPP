@@ -72,6 +72,7 @@ function AnimationApp(){
                                                 onEnter={routeGoPage}
                                                 key={routeParams.name} 
                                                 path={routeParams.path} 
+                                                exact={routeParams.meta && routeParams.meta.type === 'home'? false:true}
                                                 component={routeParams.components}
                                             />
                                 })
