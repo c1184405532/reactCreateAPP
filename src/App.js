@@ -11,6 +11,9 @@ import {
     useLocation,
     useHistory,
   } from "react-router-dom";
+import KeepAlive, { AliveScope } from 'react-activation'
+import CacheRoute, { CacheSwitch } from 'react-router-cache-route'
+// import { Provider as KeepAliveProvider,KeepAlive} from 'react-keep-alive';
 import RouterData from 'router/index.js' 
 import Error404 from 'pages/Error404.js'
 import AuthRoute from 'components/AuthRoute.js'
@@ -21,9 +24,10 @@ function routeGoPage(e){
 function App() {
 	return (
 		<Router>
-            <AnimationApp/>
+            <AliveScope>
+                <AnimationApp/>
+            </AliveScope>
     	</Router>
-		
 	);
 }
 let oldLocation = null;
@@ -51,41 +55,48 @@ function AnimationApp(){
     //console.log(homeRoute)
     // 更新旧location
     oldLocation = location;
+    
     //console.log('history',location)
     return (
-            <TransitionGroup
-                className={classNames}
-            >
-                <CSSTransition
-                    key={location.pathname}
-                    classNames="animation"
-                    timeout={300}
-                    enter={false}
-                    exit={false}
-                >
-                    <div className="App">
-                        <Switch >		
-                            {
-                                RouterData.map(routeParams => {
-                                    return  <AuthRoute 
-                                                meta={routeParams.meta||{}}
-                                                onEnter={routeGoPage}
-                                                key={routeParams.name} 
-                                                path={routeParams.path} 
-                                                exact={routeParams.meta && routeParams.meta.type === 'home'? false:true}
-                                                component={routeParams.components}
-                                            />
-                                })
-                            }
-                            <Route exact path="/">
-                                <Redirect to="/user/login" />
-                            </Route>
-                            { /* 页面路径没有匹配时进入此页面 必须放在最后 因为Switch 一旦匹配就会停止下面的路由匹配机制*/}
-                            <Route exact  path="*" component={Error404}/> 
-                        </Switch>
-                    </div>
-                </CSSTransition>
-            </TransitionGroup>		
+        <Route
+            render={({ location }) => {
+                return (
+                    <TransitionGroup className={classNames}>
+                        <CSSTransition
+                            key={location.pathname}
+                            classNames="animation"
+                            timeout={300}
+                            enter={false}
+                            exit={false}
+                        >
+                            <div className="App">
+                                <Switch >		
+                                        {
+                                        RouterData.map(routeParams => {
+                                            return  <AuthRoute  
+                                                        meta={routeParams.meta||{}}
+                                                        onEnter={routeGoPage}
+                                                        key={routeParams.name} 
+                                                        path={routeParams.path} 
+                                                        exact={routeParams.meta && routeParams.meta.type === 'home'? false:true}
+                                                        component={routeParams.components}
+                                                    />
+                                        })
+                                        }
+                                        
+                                        <Route exact path="/">
+                                            <Redirect to="/user/login" />
+                                        </Route>
+                                        { /* 页面路径没有匹配时进入此页面 必须放在最后 因为Switch 一旦匹配就会停止下面的路由匹配机制*/}
+                                        <Route exact path="*" render={()=>(<Error404/>)}/> 
+                                </Switch>
+                            </div>
+                        </CSSTransition>
+                    </TransitionGroup>	
+                )
+            }}
+        />
+            	
 	);
 }
 export default App;

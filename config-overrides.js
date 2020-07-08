@@ -1,7 +1,9 @@
-const { override, fixBabelImports,addWebpackAlias  } = require('customize-cra');
+const { override, fixBabelImports,addWebpackAlias,addBabelPlugins ,useBabelRc } = require('customize-cra');
 const cssRegex = /\.css$/;
 const cssModuleRegex = /\.module\.css$/;
 module.exports = override(
+    addBabelPlugins(["react-activation/babel"]),
+    useBabelRc(),
     fixBabelImports('import', {
         libraryName: 'antd-mobile',
         style: 'css',

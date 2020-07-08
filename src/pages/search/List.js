@@ -3,24 +3,48 @@ import { useHistory } from "react-router-dom";
 import NavBarLayout from 'components/NavBarLayout.js'
 import ListComponents from 'components/ListComponents.js'
 import Axios from 'request/Axios.js'
+import{  useAliveController ,useActivate, useUnactivate,} from 'react-activation'
 // import { useHistory } from "react-router-dom";
  import './index.css';
 // import { Button} from 'antd-mobile';
-
+let removeKeepAlive = false;
 function SearchList(){
     let page = 1;
-    const ListComponentsRef = useRef(null);
     let history = useHistory();
+     
+    const {refreshScope ,dropScope,getCachingNodes, } = useAliveController();
+    const ListComponentsRef = useRef(null);
     const [refreshing,setRefreshing] = useState(false)
+    console.log('history',history.location.pathname)
     useEffect(()=>{
         getList({
             type:'init'
         })
+        //dropScope('/search/list') 
+        
         return ()=>{
             page = 1;
             setRefreshing(false)
         }
     },[])
+    useActivate(()=>{
+        console.log('useActivate')
+    })
+    useUnactivate(()=>{
+        if(removeKeepAlive){
+            dropScope(history.location.pathname)
+            setTimeout(()=>{
+                console.log(getCachingNodes())
+            },1000)
+        }
+        console.log('useUnactivate')
+    })
+    function navReturnCallBack(){
+        //清除keep alive组件缓存
+        console.log('清除缓存')
+        removeKeepAlive = true;
+        //refreshScope(history.location.pathname) 
+    }
     function onRefresh(){
         setRefreshing(true)
         page = 1;
@@ -33,6 +57,7 @@ function SearchList(){
     }
     function gotoDetail(rowData){
         console.log('跳转')
+        removeKeepAlive = false;
         history.push({
             pathname:'/search/list/detail',
         })
@@ -45,6 +70,7 @@ function SearchList(){
     }
     
     function getList(getDataType){
+        
         Axios.get('api/list',{
             //当前页数
             data:{
@@ -92,7 +118,9 @@ function SearchList(){
             <NavBarLayout
                 title="搜索列表"
                 rightContent={<div></div>}
+                leftCallBack={navReturnCallBack}
             />
+            {console.log('搜索列表搜索列表')}
             <div className="am_list_box">
                 <ListComponents
                     ref={ListComponentsRef}
