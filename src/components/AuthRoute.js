@@ -45,7 +45,7 @@ class AuthRoute extends React.Component {
         if(rest.meta && rest.meta.keepAlive){
             isKeepAlive = true
         }
-        console.log('isKeepAlive',rest.location.pathname)
+        //console.log('isKeepAlive',rest.location.pathname)
         return (
             isKeepAlive?<Route
                             {...rest}

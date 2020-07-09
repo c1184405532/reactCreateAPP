@@ -15,7 +15,7 @@ function SearchList(){
     const {refreshScope ,dropScope,getCachingNodes, } = useAliveController();
     const ListComponentsRef = useRef(null);
     const [refreshing,setRefreshing] = useState(false)
-    console.log('history',history.location.pathname)
+    //console.log('history',history.location.pathname)
     useEffect(()=>{
         getList({
             type:'init'
@@ -28,20 +28,35 @@ function SearchList(){
         }
     },[])
     useActivate(()=>{
-        console.log('useActivate')
+        //console.log('useActivate',ListComponentsRef)
+        if(ListComponentsRef.current){
+            ListComponentsRef.current.setScoll()
+            //获取所有行数据
+            let allRowData = ListComponentsRef.current.getAllRowData()
+            allRowData.forEach((rowData,index)=>{
+                if(index === 5){
+                    rowData.name = '修改后的数据'
+                }
+                //console.log(rowData)
+            })
+            //更新行数据
+            ListComponentsRef.current.upDateRowData(allRowData)
+            //console.log(allRowData)
+        }
+        
     })
     useUnactivate(()=>{
         if(removeKeepAlive){
-            dropScope(history.location.pathname)
+            //dropScope(history.location.pathname)
             setTimeout(()=>{
-                console.log(getCachingNodes())
+                //console.log(getCachingNodes())
             },1000)
         }
-        console.log('useUnactivate')
+        //console.log('useUnactivate')
     })
     function navReturnCallBack(){
         //清除keep alive组件缓存
-        console.log('清除缓存')
+        //console.log('清除缓存')
         removeKeepAlive = true;
         //refreshScope(history.location.pathname) 
     }
@@ -53,10 +68,10 @@ function SearchList(){
         });
     }
     function rowData(rowData){
-        return  <div className="list_item" onClick={gotoDetail}>姓名: {rowData.name}----年龄：{rowData.age}</div>
+        return  <div className="list_item" onClick={()=>{gotoDetail(rowData)}}>姓名: {rowData.name}----年龄：{rowData.age}</div>
     }
     function gotoDetail(rowData){
-        console.log('跳转')
+        console.log(rowData)
         removeKeepAlive = false;
         history.push({
             pathname:'/search/list/detail',
@@ -120,7 +135,7 @@ function SearchList(){
                 rightContent={<div></div>}
                 leftCallBack={navReturnCallBack}
             />
-            {console.log('搜索列表搜索列表')}
+           
             <div className="am_list_box">
                 <ListComponents
                     ref={ListComponentsRef}
@@ -130,16 +145,16 @@ function SearchList(){
                     rowData={rowData}
                     onRefresh={onRefresh}
                     onEndReached={onEndReached}
-                    listIndicator={{
-                        no:<div style={{textAlign:'center'}}>暂无数据</div>,
-                        add:<div style={{textAlign:'center'}}>上拉加载更多</div>,
-                        finish:<div style={{textAlign:'center'}}>数据已全部加载</div>,   
-                    }}
-                    refreshIndicator={{
-                        activate:<div>松开刷新</div>,
-                        deactivate: <div>下拉刷新</div>,
-                        finish: <div>刷新完成</div>, 
-                    }}
+                    // listIndicator={{
+                    //     no:<div style={{textAlign:'center'}}>暂无数据2</div>,
+                    //     add:<div style={{textAlign:'center'}}>上拉加载更多2</div>,
+                    //     finish:<div style={{textAlign:'center'}}>数据已全部加载2</div>,   
+                    // }}
+                    // refreshIndicator={{
+                    //     activate:<div>松开刷新2</div>,
+                    //     deactivate: <div>下拉刷新2</div>,
+                    //     finish: <div>刷新完成2</div>, 
+                    // }}
                 />
             </div> 
         </div>

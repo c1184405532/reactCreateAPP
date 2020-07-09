@@ -1,5 +1,5 @@
 import React,{ useState, useEffect,useRef } from 'react';
-import { useHistory } from "react-router-dom";
+import { useHistory ,useParams} from "react-router-dom";
 import NavBarLayout from 'components/NavBarLayout.js'
 import ListComponents from 'components/ListComponents.js'
 import Axios from 'request/Axios.js'
@@ -11,6 +11,7 @@ function ListDetail(){
     
     useEffect(()=>{
         console.log('详情页')
+        console.log(useParams)
         return ()=>{
             
         }
