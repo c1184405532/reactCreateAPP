@@ -1,26 +1,14 @@
-import React,{ useState, useEffect,useRef } from 'react';
-import { useHistory ,useParams} from "react-router-dom";
+import React,{ useEffect } from 'react';
+import { useHistory } from "react-router-dom";
 import NavBarLayout from 'components/NavBarLayout.js'
-import ListComponents from 'components/ListComponents.js'
-import Axios from 'request/Axios.js'
-// import { useHistory } from "react-router-dom";
- import './index.css';
-// import { Button} from 'antd-mobile';
 
 function ListDetail(){
-    
+    const { location } = useHistory();
     useEffect(()=>{
-        console.log('详情页')
-        console.log(useParams)
         return ()=>{
             
         }
-    },[])
-    
-   
-   
-    
-    
+    },[])  
     
     return (
         <div className="serch_box">
@@ -28,7 +16,7 @@ function ListDetail(){
                 title="搜索列表详情"
                 rightContent={<div></div>}
             />
-            <div>详情详情</div>
+            <div>{`姓名：${location.state.name}  年龄：${location.state.age}`}</div>
         </div>
     );
 }

@@ -1,5 +1,5 @@
 import React,{ useState, useEffect } from 'react';
-
+import './static/index.less'
 function Index(){
     useEffect(() => {
         window.$on('rightLayoutMenuClick',(data)=>{
@@ -10,8 +10,8 @@ function Index(){
         }
     });
     return (
-        <div >
-            
+        <div className="home_page">
+            <div className="aaa">测试less语法</div>
             首页下的首页
         </div>
     );

@@ -66,6 +66,8 @@ function AnimationApp(){
                             key={location.pathname}
                             classNames="animation"
                             timeout={300}
+                            mountOnEnter
+                            unmountOnExit
                             enter={false}
                             exit={false}
                         >

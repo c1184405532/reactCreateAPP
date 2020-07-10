@@ -1,7 +1,7 @@
 import React from 'react';
 import { List, InputItem, Toast ,Button} from 'antd-mobile';
 import Axios from 'request/Axios.js'
-import './index.css'
+import './index.less'
 class Login extends React.Component {
     constructor(props) {
         super(props);

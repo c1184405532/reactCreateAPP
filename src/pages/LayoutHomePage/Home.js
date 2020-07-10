@@ -1,6 +1,6 @@
 import React from 'react';
 import RouterData from 'router/index.js' 
-import './index.css';
+import './index.less';
 import NavBarLayout from 'components/NavBarLayout.js'
 import TabBarLayout from 'components/TabBarLayout.js'
 import Error404 from 'pages/Error404.js'
@@ -76,7 +76,7 @@ class Home extends React.Component {
     }
     render() {
         return (
-            <div className="home_page_layout_box">
+            <div className="layout_home_page_layout_box">
                 <NavBarLayout 
                     isShowNavBar={this.state.showNavBar}
                     leftContent={true}
@@ -84,7 +84,7 @@ class Home extends React.Component {
                     leftCallBack={this.leftCallBack}
                     rightCallBack={this.rightCallBack}
                 />
-                <div className="home_content_box">
+                <div className="layout_home_content_box">
                     <Switch>		
                         {homeRouteData.map(roureParams=>(
                             <Route key={roureParams.name} exact={true} path={`${this.props.match.path+roureParams.path}`} component={roureParams.components} />

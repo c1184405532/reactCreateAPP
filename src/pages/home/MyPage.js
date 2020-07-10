@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory } from "react-router-dom";
-import './static/index.css';
+import './static/index.less';
 import { Button} from 'antd-mobile';
 
 function MyPage(){

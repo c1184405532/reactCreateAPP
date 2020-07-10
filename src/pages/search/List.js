@@ -5,7 +5,7 @@ import ListComponents from 'components/ListComponents.js'
 import Axios from 'request/Axios.js'
 import{  useAliveController ,useActivate, useUnactivate,} from 'react-activation'
 // import { useHistory } from "react-router-dom";
- import './index.css';
+ import './index.less';
 // import { Button} from 'antd-mobile';
 let removeKeepAlive = false;
 function SearchList(){
@@ -75,12 +75,14 @@ function SearchList(){
         removeKeepAlive = false;
         history.push({
             pathname:'/search/list/detail',
+            state:rowData,
         })
     }
     function onEndReached(){
         page +=1
         getList({
-            type:'add'
+            type:'add',
+            beforeRequestToastType:false
         });
     }
     
@@ -92,10 +94,10 @@ function SearchList(){
                 page:page,
             },
             //此配置详见Axios.js配置
-            // requestToastConfig:{
+            requestToastConfig:{
                 
-            //     beforeRequestToastType:getDataType ? getDataType.beforeRequestToastType : true
-            // }
+                beforeRequestToastType:getDataType.beforeRequestToastType=== false ?false: true
+            }
         }).then((res)=>{
             //console.log('刷新成功',ListComponentsRef)  
             if(res.success){
