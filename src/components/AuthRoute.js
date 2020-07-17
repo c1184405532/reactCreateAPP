@@ -3,9 +3,7 @@ import {
     Route,
     withRouter,
 } from "react-router-dom";
-import CacheRoute from 'react-router-cache-route'
 import KeepAlive from 'react-activation'
-import Error404 from 'pages/Error404.js'
 class AuthRoute extends React.Component {
     constructor(props) {
         super(props);
@@ -44,13 +42,14 @@ class AuthRoute extends React.Component {
         let isKeepAlive = false;
         if(rest.meta && rest.meta.keepAlive){
             isKeepAlive = true
+            //console.log('isKeepAlive',rest)
         }
-        //console.log('isKeepAlive',rest.location.pathname)
         return (
             isKeepAlive?<Route
                             {...rest}
                             render={routeProps=>(
-                                <KeepAlive  name={rest.location.pathname}>
+                                <KeepAlive  name={rest.path}>
+                                    
                                     <Component {...routeProps} />
                                 </KeepAlive>
                             )}

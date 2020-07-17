@@ -8,20 +8,17 @@ import{  useAliveController ,useActivate, useUnactivate,} from 'react-activation
  import './index.less';
 // import { Button} from 'antd-mobile';
 let removeKeepAlive = false;
-function SearchList(){
+function SearchList(props){
     let page = 1;
     let history = useHistory();
-     
-    const {refreshScope ,dropScope,getCachingNodes, } = useAliveController();
+    const { dropScope, } = useAliveController();
     const ListComponentsRef = useRef(null);
     const [refreshing,setRefreshing] = useState(false)
-    //console.log('history',history.location.pathname)
     useEffect(()=>{
         getList({
             type:'init'
         })
-        //dropScope('/search/list') 
-        
+
         return ()=>{
             page = 1;
             setRefreshing(false)
@@ -47,18 +44,16 @@ function SearchList(){
     })
     useUnactivate(()=>{
         if(removeKeepAlive){
-            //dropScope(history.location.pathname)
             setTimeout(()=>{
-                //console.log(getCachingNodes())
-            },1000)
+                //console.log('props.match.path',props.match.path)
+                dropScope(props.match.path)
+            },100)
         }
         //console.log('useUnactivate')
     })
     function navReturnCallBack(){
         //清除keep alive组件缓存
-        //console.log('清除缓存')
         removeKeepAlive = true;
-        //refreshScope(history.location.pathname) 
     }
     function onRefresh(){
         setRefreshing(true)
@@ -71,7 +66,7 @@ function SearchList(){
         return  <div className="list_item" onClick={()=>{gotoDetail(rowData)}}>姓名: {rowData.name}----年龄：{rowData.age}</div>
     }
     function gotoDetail(rowData){
-        console.log(rowData)
+        //console.log(rowData)
         removeKeepAlive = false;
         history.push({
             pathname:'/search/list/detail',

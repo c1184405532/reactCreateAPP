@@ -6,9 +6,10 @@ import 'globaleConfig/routerConfig.js'
 import 'globaleConfig/userMessage.js'
 import 'globaleConfig/util.js'
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+   <React.StrictMode>
+     <App />
+   </React.StrictMode>,
+//<App />,
   document.getElementById('root')
 );
 

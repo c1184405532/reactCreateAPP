@@ -11,9 +11,8 @@ import {
     useLocation,
     useHistory,
   } from "react-router-dom";
-import KeepAlive, { AliveScope } from 'react-activation'
-import CacheRoute, { CacheSwitch } from 'react-router-cache-route'
-// import { Provider as KeepAliveProvider,KeepAlive} from 'react-keep-alive';
+import  { AliveScope } from 'react-activation'
+
 import RouterData from 'router/index.js' 
 import Error404 from 'pages/Error404.js'
 import AuthRoute from 'components/AuthRoute.js'
@@ -72,18 +71,18 @@ function AnimationApp(){
                             exit={false}
                         >
                             <div className="App">
-                                <Switch >		
+                                <Switch location={location}>		
                                         {
-                                        RouterData.map(routeParams => {
-                                            return  <AuthRoute  
-                                                        meta={routeParams.meta||{}}
-                                                        onEnter={routeGoPage}
-                                                        key={routeParams.name} 
-                                                        path={routeParams.path} 
-                                                        exact={routeParams.meta && routeParams.meta.type === 'home'? false:true}
-                                                        component={routeParams.components}
-                                                    />
-                                        })
+                                            RouterData.map(routeParams => {
+                                                return  <AuthRoute  
+                                                            meta={routeParams.meta||{}}
+                                                            onEnter={routeGoPage}
+                                                            key={routeParams.name} 
+                                                            path={routeParams.path} 
+                                                            exact={routeParams.meta && routeParams.meta.type === 'home'? false:true}
+                                                            component={routeParams.components}
+                                                        />
+                                            })
                                         }
                                         
                                         <Route exact path="/">

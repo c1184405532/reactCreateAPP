@@ -21,8 +21,6 @@
     "react": "^16.13.1",
     "react-activation": "^0.5.3",
     "react-dom": "^16.13.1",
-    "react-keep-alive": "^2.5.2",
-    "react-router-cache-route": "^1.9.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "react-transition-group": "^4.4.1"
