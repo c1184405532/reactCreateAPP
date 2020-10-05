@@ -7,7 +7,7 @@ const baseURL = 'http://localhost:9999';
 const instance = axions.create({
     //baseURL:'https://api.github.com/users',//basePort + baseURL,
     baseURL:baseURL,
-    timeout:2000,
+    timeout:3000,
 })
 
 
