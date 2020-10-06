@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useHistory } from "react-router-dom";
 import NavBarLayout from 'components/NavBarLayout.js'
-import ListComponents from 'components/ListComponents.js'
+import PullToRefresh from 'components/pullToRefresh'
 import Axios from 'request/Axios.js'
 import { useAliveController, useActivate, useUnactivate, } from 'react-activation'
 // import { useHistory } from "react-router-dom";
@@ -13,7 +13,7 @@ let page = 1;
 function SearchList(props) {
 	let history = useHistory();
 	const { dropScope, } = useAliveController();
-	const ListComponentsRef = useRef(null);
+	const refreshRef = useRef(null);
 	const [refreshing, setRefreshing] = useState(false)
 	const [list, setList] = useState([])
 	const [listTotal, setListTotal] = useState(0)
@@ -29,8 +29,8 @@ function SearchList(props) {
 	}, [])
 
 	useActivate(() => {
-		if (ListComponentsRef.current) {
-			const { setScoll } = ListComponentsRef.current
+		if (refreshRef.current) {
+			const { setScoll } = refreshRef.current
 			//设置滚动位置
 			setScoll();
 			//拿到原先的数据比对
@@ -85,7 +85,7 @@ function SearchList(props) {
 		getList({	beforeRequestToastType: false});
 	}
 
-	function getList(getDataType={}) {
+	function getList(getDataType = {}) {
 		Axios.get('api/list', {
 			//当前页数
 			data: {
@@ -124,8 +124,8 @@ function SearchList(props) {
 				leftCallBack={navReturnCallBack}
 			/>
 			<div className="am_list_box">
-				<ListComponents
-					ref={ListComponentsRef}
+				<PullToRefresh
+					ref={refreshRef}
 					list={list}
 					total={listTotal}
 					distanceToRefresh={50}
