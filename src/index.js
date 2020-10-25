@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import 'globaleConfig/routerConfig.js'
 import 'globaleConfig/userMessage.js'
 import 'globaleConfig/util.js'
+import 'globaleStyle/animations.css'
 ReactDOM.render(
    <React.StrictMode>
      <App />

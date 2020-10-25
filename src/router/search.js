@@ -1,5 +1,5 @@
 
-import asyncComponent from 'components/asyncComponent.js'
+import asyncComponent from 'components/asyncComponent'
 
 const AsyncSearchList= asyncComponent(() => import("pages/search/List.js"));
 const AsyncSearchListDetail= asyncComponent(() => import("pages/search/detail.js"));

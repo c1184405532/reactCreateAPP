@@ -1,14 +1,8 @@
 
-import asyncComponent from 'components/asyncComponent.js'
-
-// import Login from 'pages/user/Login.js'
-// import Home from 'pages/LayoutHomePage/Home.js'
-// import HomeIndex from 'pages/home/IndexPage.js'
-// import SearchPage from 'pages/home/SearchPage.js'
-// import MyPage from 'pages/home/MyPage.js'
+import asyncComponent from 'components/asyncComponent'
 import searchRouter from './search.js'
+const AsyncLayoutHome = asyncComponent(() => import("components/layoutHome"));
 const AsyncLogin = asyncComponent(() => import("pages/user/Login.js"));
-const AsyncHome = asyncComponent(() => import("pages/LayoutHomePage/Home.js"));
 const AsyncHomeIndex = asyncComponent(() => import("pages/home/IndexPage.js"));
 const AsyncSearchPage = asyncComponent(() => import("pages/home/SearchPage.js"));
 const AsyncMyPage = asyncComponent(() => import("pages/home/MyPage.js"));
@@ -26,7 +20,7 @@ const router = [
         meta:{type:'home',isToken:true},
         path:'/home',
         name:'/home',
-        components: AsyncHome,
+        components: AsyncLayoutHome,
         children:[
             //这里path的路径不用拼写父组件路径 使用时会直接带上
             {

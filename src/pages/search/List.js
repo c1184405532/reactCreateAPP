@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useHistory } from "react-router-dom";
-import NavBarLayout from 'components/NavBarLayout.js'
+import NavBar from 'components/navBar'
 import PullToRefresh from 'components/pullToRefresh'
 import Axios from 'request/Axios.js'
 import { useAliveController, useActivate, useUnactivate, } from 'react-activation'
@@ -118,7 +118,7 @@ function SearchList(props) {
 	}
 	return (
 		<div className="serch_box">
-			<NavBarLayout
+			<NavBar
 				title="搜索列表"
 				rightContent={<div></div>}
 				leftCallBack={navReturnCallBack}

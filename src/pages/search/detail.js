@@ -1,6 +1,6 @@
 import React,{ useEffect } from 'react';
 import { useHistory } from "react-router-dom";
-import NavBarLayout from 'components/NavBarLayout.js'
+import NavBar from 'components/navBar'
 
 function ListDetail(){
     const { location } = useHistory();
@@ -14,7 +14,7 @@ function ListDetail(){
     
     return (
         <div className="serch_box">
-            <NavBarLayout
+            <NavBar
                 title="搜索列表详情"
                 rightContent={<div></div>}
             />
