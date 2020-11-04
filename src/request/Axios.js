@@ -1,5 +1,5 @@
-import axios from './axiosIntercept.js';
-import { retry,retryDelay,shouldRetry,lastRetryUrl,defaultRequestToastConfig } from './config.js';
+import axios from './axiosIntercept';
+import { retry,retryDelay,shouldRetry,lastRetryUrl,defaultRequestToastConfig } from './config';
 /*
 Axios下的函数接受多个参数
 参数1 请求地址 String

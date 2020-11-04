@@ -4,6 +4,7 @@ import {
 	withRouter,
 } from "react-router-dom";
 import KeepAlive from 'react-activation'
+import { getUserToken } from 'utils/userMethod'
 class AuthRoute extends React.Component {
 	static defaultProps = {
 		onEnter:()=>{},
@@ -20,7 +21,7 @@ class AuthRoute extends React.Component {
 			return
 		}
 		//判断是否需要token校验的页面
-		let token = window.getToken()
+		let token = getUserToken()
 		if (isToken && !token) {
 			history.replace({	pathname: '/user/login',})
 			return

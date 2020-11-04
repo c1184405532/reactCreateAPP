@@ -1,6 +1,9 @@
 import axions from 'axios';
-import { baseURL,timeOut,baseClearToastTime } from './config.js';
+import { useHistory } from "react-router-dom";
+import { createBrowserHistory } from 'history';
+import { baseURL,timeOut,baseClearToastTime } from './config';
 import { Toast } from 'antd-mobile';
+import { getUserToken } from 'utils/userMethod'
 const instance = axions.create({
 	baseURL: baseURL,
 	timeout: timeOut,
@@ -8,7 +11,7 @@ const instance = axions.create({
 
 instance.interceptors.request.use(function (config) {
 	// 在发送请求之前做些什么
-	const token = window.getToken();
+	const token = getUserToken();
 	const { toastConfig } = instance;
 	if (token) {
 		config.headers['X-Access-Token'] = token;
@@ -57,23 +60,26 @@ instance.interceptors.response.use(function (response) {
 
 	} else {
 		if (response && response.data) {
+			let status = response.status;
+			//这里可以做特殊判断对应的请求status 进行你想要的操作
+			switch (status) {
+				case 500:
+					//let history = useHistory();
+					createBrowserHistory().push('/user/login')
+					window.history.go(0)
+					return Promise.resolve(response && response.data)
+					break;
+				default:
+			}
 			if(toastConfig.networkErrorType){
 				Toast.fail(response.data.message || response.statusText)
 			}
-			let status = response.status;
-			setTimeout(() => {
-				//这里可以做特殊判断对应的请求status 进行你想要的操作
-				switch (status) {
-					case 500:
-						// window.removeLocalStorage('routerIsBack')
-						break;
-					default:
-				}
-			}, 1000)
+			
+			//}, 1000)
 		} else {
-			Toast.fail(response)
+			Toast.fail('请求出错啦！')
 		}
-		return Promise.reject(error);
+		return Promise.reject(response && response.data || {success:false,message:'请求出错啦！'});
 	}
 });
 export default instance;

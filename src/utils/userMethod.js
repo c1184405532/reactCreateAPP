@@ -9,5 +9,9 @@ export const setUserToken = (token) => {
 }
 
 export const getUserToken = () => {
-  return JSON.parse(localStorage.getItem('userToken'))
+  return localStorage.getItem('userToken')
+}
+
+export const removeUserToken = () => {
+  return localStorage.removeItem('userToken')
 }

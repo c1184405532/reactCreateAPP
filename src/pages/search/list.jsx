@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useHistory } from "react-router-dom";
 import NavBar from 'components/navBar'
 import PullToRefresh from 'components/pullToRefresh'
-import Axios from 'request/Axios.js'
+import Axios from 'request/Axios'
 import { useAliveController, useActivate, useUnactivate, } from 'react-activation'
 // import { useHistory } from "react-router-dom";
 import './index.less';
@@ -66,7 +66,7 @@ function SearchList(props) {
 	function onRefresh() {
 		setRefreshing(true)
 		page = 1;
-		getList({type:'reset'});
+		getList({type:'reset',startType:true});
 	}
 	
 	function rowData(rowData) {
@@ -82,10 +82,10 @@ function SearchList(props) {
 	
 	function onEndReached() {
 		page += 1
-		getList({	beforeRequestToastType: false});
+		getList({startType:false});
 	}
 
-	function getList(getDataType = {}) {
+	function getList(getDataType = {startType:true}) {
 		Axios.get('api/list', {
 			//当前页数
 			data: {
@@ -93,7 +93,7 @@ function SearchList(props) {
 			},
 			//此配置详见Axios.js配置
 			requestToastConfig: {
-				beforeRequestToastType: getDataType.beforeRequestToastType === false ? false : true
+				startType:getDataType.startType
 			}
 		}).then((res) => {
 			//如果是重置先清空 不在重置函数清空的原因是
@@ -110,10 +110,10 @@ function SearchList(props) {
 					page -= 1;
 					setRefreshing(false)
 				}
-		}, error => {
+		},error => {
 			page -= 1;
 			setRefreshing(false)
-			Toast.fail(error)
+			Toast.fail(error && error.message || '请求出错啦！')
 		})
 	}
 	return (

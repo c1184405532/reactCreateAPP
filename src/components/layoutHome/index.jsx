@@ -2,7 +2,7 @@ import React from 'react';
 import NavBar from 'components/navBar'
 import TabBar from 'components/tabBar'
 import Page404 from 'components/page404'
-import routerData from 'router/index.js'
+import routerData from 'router/index'
 import './index.less';
 import {
 	Route,

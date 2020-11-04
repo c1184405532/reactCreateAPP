@@ -1,6 +1,7 @@
 import React,{ Component } from 'react';
 import { List, InputItem, Toast, Button } from 'antd-mobile';
-import Axios from 'request/Axios.js'
+import { userLogin } from 'services/index'
+import { setUserToken } from 'utils/userMethod'
 import './index.less'
 class Login extends Component {
 	constructor(props) {
@@ -33,7 +34,7 @@ class Login extends Component {
 			Toast.info('请输入密码 123456', 2);
 			return
 		}
-		Axios.post('api/login', {
+		userLogin({
 			data: {
 				userName: account,
 				passWord: password,
@@ -45,15 +46,14 @@ class Login extends Component {
 				endType: true,
 				errorType: true,
 				networkErrorType:true,
-			},
-
+			}
 		}).then((res) => {
-			const { setLocalStorage, setToken, removeLocalStorage } = window;
+			const { setLocalStorage, removeLocalStorage } = window;
 			const { history } = this.props;
 			if (res.success) {
 				//如果登录成功设置所有页面可以存在点击浏览器回退按钮
 				setLocalStorage('isRouterBack', true)
-				setToken(res.data.token)
+				setUserToken(res.data.token)
 				//清除导航菜单数据 默认进入首页
 				removeLocalStorage('navMenuBarDataPage')
 				history.replace({ pathname: '/home/index',})

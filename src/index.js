@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import 'globaleConfig/userMessage.js'
-import 'globaleConfig/util.js'
-import 'globaleStyle/animations.css'
+import 'utils/globalUtil'
+import 'utils/globalCommunication'
+import 'globaleStyle/animations.less'
 ReactDOM.render(
    <React.StrictMode>
      <App />
@@ -12,7 +12,7 @@ ReactDOM.render(
 //<App />,
   document.getElementById('root')
 );
-
+console.log('global',global)
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
