@@ -1,5 +1,4 @@
 import axions from 'axios';
-import { useHistory } from "react-router-dom";
 import { createBrowserHistory } from 'history';
 import { baseURL,timeOut,baseClearToastTime } from './config';
 import { Toast } from 'antd-mobile';
@@ -14,7 +13,7 @@ instance.interceptors.request.use(function (config) {
 	const token = getUserToken();
 	const { toastConfig } = instance;
 	if (token) {
-		config.headers['X-Access-Token'] = token;
+		config.headers['X-Access-Token'] = JSON.parse(token);
 	}
 	if (toastConfig.startType) {
 		Toast.loading(toastConfig.message, 0);
@@ -64,22 +63,20 @@ instance.interceptors.response.use(function (response) {
 			//这里可以做特殊判断对应的请求status 进行你想要的操作
 			switch (status) {
 				case 500:
-					//let history = useHistory();
-					createBrowserHistory().push('/user/login')
-					window.history.go(0)
-					return Promise.resolve(response && response.data)
+					setTimeout(()=>{
+						createBrowserHistory().push('/user/login')
+						window.history.go(0)
+					},1000)
 					break;
 				default:
 			}
 			if(toastConfig.networkErrorType){
 				Toast.fail(response.data.message || response.statusText)
 			}
-			
-			//}, 1000)
 		} else {
 			Toast.fail('请求出错啦！')
 		}
-		return Promise.reject(response && response.data || {success:false,message:'请求出错啦！'});
+		return Promise.reject((response && response.data) || {success:false,message:'请求出错啦！'});
 	}
 });
 export default instance;

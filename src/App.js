@@ -4,23 +4,20 @@ import {
 	CSSTransition
 } from "react-transition-group";
 import {
-	Router,
+	BrowserRouter as Router,
 	Switch,
 	Route,
 	Redirect,
 	useLocation,
 	useHistory,
 } from "react-router-dom";
-import { createBrowserHistory } from 'history';
 import { AliveScope } from 'react-activation'
 import routerData from 'router/index'
 import Page404 from 'components/page404'
 import AuthRoute from 'components/authRoute/index'
-const createHistory = createBrowserHistory();
-console.log('createHistory',createHistory)
 function App() {
 	return (
-		<Router history={createHistory}>
+		<Router>
 			<AliveScope>
 				<AnimationApp />
 			</AliveScope>
@@ -65,7 +62,7 @@ function AnimationApp() {
 							enter={false}
 							exit={false}
 						>
-							<div className="App">
+							<div className="app_container">
 								<Switch location={location}>
 									{
 										routerData.map(routeParams => {

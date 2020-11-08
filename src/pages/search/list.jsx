@@ -26,6 +26,7 @@ function SearchList(props) {
 			setList([])
 			setRefreshing(false)
 		}
+		// eslint-disable-next-line
 	}, [])
 
 	useActivate(() => {
@@ -70,7 +71,7 @@ function SearchList(props) {
 	}
 	
 	function rowData(rowData) {
-		return <div className="list_item" onClick={() => { gotoDetail(rowData) }}>姓名: {rowData.name}----年龄：{rowData.age}</div>
+		return <div className="list_item" style={{fontSize:14}} onClick={() => { gotoDetail(rowData) }}>姓名: {rowData.name}----年龄：{rowData.age}</div>
 	}
 	
 	function gotoDetail(rowData) {
@@ -113,7 +114,7 @@ function SearchList(props) {
 		},error => {
 			page -= 1;
 			setRefreshing(false)
-			Toast.fail(error && error.message || '请求出错啦！')
+			Toast.fail((error && error.message) || '请求出错啦！')
 		})
 	}
 	return (

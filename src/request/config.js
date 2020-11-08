@@ -1,6 +1,6 @@
 
 //请求默认配置项
-const baseURL = 'http://localhost:9999';
+const baseURL = 'http://192.168.1.9:9999';
 const timeOut = 5000;//请求超时 单位毫秒
 const baseClearToastTime = 1.6;//单位秒
 const defaultRequestToastConfig = {

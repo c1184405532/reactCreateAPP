@@ -1,6 +1,5 @@
 
 let eventList = {}
-var globals = {};
 window.$on = function (onType, fn) {
 	if (!eventList[onType]) {
 		eventList[onType] = [];
@@ -23,4 +22,3 @@ window.$off = function (offType, fn) {
 	};
 	if (fn) { fn.apply(this, arguments) };
 }
-console.log('window',globals)

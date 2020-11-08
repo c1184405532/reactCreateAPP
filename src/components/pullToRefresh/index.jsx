@@ -16,13 +16,13 @@ class Index extends React.Component {
 		onRefresh:()=>{console.log('请传入刷新函数')},//下拉刷新触发的回调 必传
 		rowData:()=>{console.log('请传入接受row数据回调')},//每行数据触发的回调，可接收当前row数据 必传
 		onEndReached:()=>{console.log('请传入上拉加载到底触发回调')},//上拉滚动到底触发回调 必传
-		listIndicatorNoData:<div className="refresh-footer-desc">暂无数据</div>,//列表底部提示 没有数据的ReactNode 
-		listIndicatorAdd:<div className="refresh-footer-desc">上拉加载更多</div>,//列表底部提示 数据未加载完毕的ReactNode 
-		listIndicatorFinish:<div className="refresh-footer-desc">数据已全部加载</div>,//列表底部提示 数据加载完毕的ReactNode 
-		listIndicatorLoading:<div className="refresh-footer-desc"><Icon type='loading'/>&nbsp;&nbsp;加载中...</div>,//列表底部提示 数据加载中的ReactNode 
-		refreshIndicatorActivate:<div>松开立即刷新</div>,//下拉刷新提示 下拉到触发距离时 ReactNode 
-		refreshIndicatorDeactivate:<div>下拉可以刷新</div>,//下拉刷新提示 下拉时ReactNode 
-		refreshIndicatorFinish:<div>刷新完成</div>,//下拉刷新提示 下拉刷新状态为true时ReactNode 
+		listIndicatorNoData:<div className="refresh_footer_desc">暂无数据</div>,//列表底部提示 没有数据的ReactNode 
+		listIndicatorAdd:<div className="refresh_footer_desc">上拉加载更多</div>,//列表底部提示 数据未加载完毕的ReactNode 
+		listIndicatorFinish:<div className="refresh_footer_desc">数据已全部加载</div>,//列表底部提示 数据加载完毕的ReactNode 
+		listIndicatorLoading:<div className="refresh_footer_desc"><Icon type='loading'/>&nbsp;&nbsp;加载中...</div>,//列表底部提示 数据加载中的ReactNode 
+		refreshIndicatorActivate:<div className="refresh_header">松开立即刷新</div>,//下拉刷新提示 下拉到触发距离时 ReactNode 
+		refreshIndicatorDeactivate:<div className="refresh_header">下拉可以刷新</div>,//下拉刷新提示 下拉时ReactNode 
+		refreshIndicatorFinish:<div className="refresh_header">刷新完成</div>,//下拉刷新提示 下拉刷新状态为true时ReactNode 
 	}
 	constructor(props) {
 		super(props);
